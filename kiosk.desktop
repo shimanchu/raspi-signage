@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Home Signage
+Comment=Open Raspberry Pi signage in kiosk mode
+Exec=sh -c 'exec chromium --kiosk --password-store=basic --user-data-dir="$HOME/.config/raspi-signage-chromium" --noerrdialogs --disable-infobars --disable-session-crashed-bubble --app=http://127.0.0.1:8080'
+Terminal=false
+X-GNOME-Autostart-enabled=true

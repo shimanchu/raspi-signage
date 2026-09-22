@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Home Signage</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <button id="device-button" type="button">🔊 <span id="device-name">未選択</span></button>
+  <main id="clock-screen" class="screen">
+    <div id="clock">--:--</div>
+    <div id="date">----</div>
+    <div class="weather"><span id="weather-icon">☀</span><span id="temperature">--℃</span><span id="rain">降水 --%</span></div>
+  </main>
+  <main id="music-screen" class="screen hidden">
+    <img id="cover" alt="ジャケット">
+    <section class="track">
+      <div class="playing">▶ 再生中</div>
+      <div id="title">曲名を取得中</div>
+      <div id="artist"></div>
+      <div id="album"></div>
+    </section>
+    <div class="mini-weather"><span id="mini-time"></span><span id="mini-weather"></span></div>
+  </main>
+  <div id="device-dialog" class="dialog hidden">
+    <section class="dialog-card">
+      <header><strong>Google Homeを選択</strong><button id="close-dialog" type="button">×</button></header>
+      <div id="device-list"><div class="searching">検索中…</div></div>
+      <button id="rescan" type="button">再検索</button>
+    </section>
+  </div>
+  <script src="/static/app.js?v=4"></script>
+</body>
+</html>

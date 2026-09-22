@@ -1,0 +1,18 @@
+# Local configuration
+.env
+settings.json
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+
+# Backup files
+*.before-*
+*.bak
+
+# Editor / OS
+.vscode/
+.DS_Store
+Thumbs.db
+

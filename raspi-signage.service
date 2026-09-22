@@ -1,0 +1,16 @@
+[Unit]
+Description=Raspberry Pi Home Signage
+After=network-online.target graphical.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=__USER__
+WorkingDirectory=__HOME__/raspi-signage
+EnvironmentFile=-__HOME__/raspi-signage/.env
+ExecStart=__HOME__/raspi-signage/.venv/bin/python __HOME__/raspi-signage/app.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
