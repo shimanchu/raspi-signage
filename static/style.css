@@ -1,31 +1,33 @@
 :root { color-scheme: dark; font-family: "Noto Sans CJK JP", "Noto Sans JP", sans-serif; }
 * { box-sizing: border-box; }
-html, body { width: 480px; height: 320px; margin: 0; overflow: hidden; background: #07121f; color: white; }
-.screen { width: 480px; height: 320px; position: relative; background: radial-gradient(circle at 70% 20%, #18395b, #07121f 65%); }
-.hidden { display: none; }
-#device-button { position: fixed; z-index: 20; top: 8px; right: 8px; max-width: 190px; min-height: 42px; padding: 7px 12px; border: 1px solid #6f8dad; border-radius: 12px; background: #142b43ee; color: #fff; font-size: 17px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.dialog { position: fixed; z-index: 100; inset: 0; display: flex; align-items: center; justify-content: center; background: #000c; }
-.dialog.hidden { display: none; }
-.dialog-card { width: 440px; max-height: 294px; padding: 14px; border: 2px solid #7fa8cf; border-radius: 16px; background: #081522; }
-.dialog-card header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; font-size: 22px; }
-.dialog-card button { color: #fff; border: 1px solid #7598b9; background: #173956; }
-#close-dialog { width: 44px; height: 40px; border-radius: 10px; font-size: 25px; }
-#device-list { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; max-height: 166px; overflow-y: auto; }
-.device-choice { min-height: 58px; padding: 8px; border-radius: 12px; font-size: 20px; font-weight: 700; }
-.searching { grid-column: 1 / -1; padding: 45px 8px; text-align: center; font-size: 19px; }
-#rescan { display: block; width: 135px; min-height: 42px; margin: 10px auto 0; border-radius: 10px; font-size: 17px; }
-#clock-screen { display: flex; flex-direction: column; align-items: center; justify-content: center; }
-#clock-screen.hidden { display: none; }
-#clock { font-size: 106px; font-weight: 700; line-height: 1; letter-spacing: -4px; }
-#date { margin-top: 14px; font-size: 28px; color: #cbdcf2; }
-.weather { display: flex; gap: 24px; align-items: center; margin-top: 24px; font-size: 28px; }
-#weather-icon { font-size: 38px; }
-#music-screen { padding: 26px; display: grid; grid-template-columns: 205px 1fr; gap: 24px; align-items: center; }
-#music-screen.hidden { display: none; }
-#cover { width: 205px; height: 205px; object-fit: cover; border-radius: 16px; background: #223247; box-shadow: 0 8px 24px #0008; }
-.track { min-width: 0; }
-.playing { font-size: 19px; color: #69e0a5; margin-bottom: 12px; }
-#title { font-size: 32px; line-height: 1.2; font-weight: 700; overflow-wrap: anywhere; max-height: 78px; overflow: hidden; }
-#artist { font-size: 23px; margin-top: 14px; color: #d2e1f3; overflow-wrap: anywhere; max-height: 58px; overflow: hidden; }
-#album { font-size: 16px; margin-top: 8px; color: #91a5bd; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-.mini-weather { position: absolute; left: 26px; right: 26px; bottom: 10px; display: flex; justify-content: space-between; font-size: 16px; color: #cbdcf2; }
+html, body { width:480px; height:320px; margin:0; overflow:hidden; background:#07121f; color:white; }
+.screen { width:480px; height:320px; position:relative; background:radial-gradient(circle at 70% 20%, #18395b, #07121f 65%); }
+.hidden { display:none; }
+#device-button { position:fixed; z-index:20; top:8px; right:8px; max-width:190px; min-height:42px; padding:7px 12px; border:1px solid #6f8dad; border-radius:12px; background:#142b43ee; color:#fff; font-size:17px; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.dialog { position:fixed; z-index:100; inset:0; display:flex; align-items:center; justify-content:center; background:#000c; }
+.dialog.hidden { display:none; }
+.dialog-card { width:440px; max-height:294px; padding:14px; border:2px solid #7fa8cf; border-radius:16px; background:#081522; }
+.dialog-card header { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; font-size:22px; }
+.dialog-card button { color:#fff; border:1px solid #7598b9; background:#173956; }
+#close-dialog { width:44px; height:40px; border-radius:10px; font-size:25px; }
+#device-list { display:grid; grid-template-columns:1fr 1fr; gap:9px; max-height:166px; overflow-y:auto; }
+.device-choice { min-height:58px; padding:8px; border-radius:12px; font-size:20px; font-weight:700; }
+.searching { grid-column:1/-1; padding:45px 8px; text-align:center; font-size:19px; }
+#rescan { display:block; width:135px; min-height:42px; margin:10px auto 0; border-radius:10px; font-size:17px; }
+#clock-screen { display:flex; flex-direction:column; align-items:center; justify-content:center; }
+#clock-screen.hidden { display:none; }
+#clock { font-size:106px; font-weight:700; line-height:1; letter-spacing:-4px; }
+#date { margin-top:14px; font-size:28px; color:#cbdcf2; }
+.weather { display:flex; gap:24px; align-items:center; margin-top:24px; font-size:28px; }
+#weather-icon { font-size:38px; }
+#music-screen { position:relative; width:480px; height:320px; padding:14px 18px 0; overflow:hidden; }
+#music-screen.hidden { display:none; }
+.music-main { display:grid; grid-template-columns:158px minmax(0,1fr); gap:17px; height:196px; align-items:center; }
+#cover { width:158px; height:158px; object-fit:cover; border-radius:15px; background:#223247; box-shadow:0 8px 24px #0008; }
+.track { min-width:0; overflow:hidden; }
+.playing { margin-bottom:7px; font-size:16px; font-weight:700; color:#69e0a5; }
+#title { font-size:27px; line-height:1.13; font-weight:700; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; overflow-wrap:anywhere; }
+#artist { margin-top:9px; font-size:19px; line-height:1.2; color:#d2e1f3; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
+#album { margin-top:6px; font-size:13px; color:#91a5bd; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
+#wave { position:absolute; left:18px; top:202px; display:block; width:444px; height:82px; background:transparent; pointer-events:none; }
+.mini-weather { position:absolute; left:18px; right:18px; bottom:5px; display:flex; justify-content:space-between; align-items:center; font-size:13px; color:#cbdcf2; z-index:2; }
