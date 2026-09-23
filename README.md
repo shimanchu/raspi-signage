@@ -4,7 +4,8 @@ Raspberry Piと3.5インチLCDで、時計・天気とGoogle Homeの再生中楽
 
 - 通常時: 大きな時計、日付、現在気温、今日の最大降水確率
 - Google Homeの再生中: 曲名、アーティスト、アルバム、ジャケットへ自動切替
-- 天気: Open-Meteo（APIキー不要、15分更新）
+- 再生画面: 480×320 LCD向けレイアウト、Waveビジュアライザー、時刻・天気を表示
+- 天気: Open-Meteo（APIキー不要、15分更新）、天候に応じたSVGアイコン表示
 - 曲情報: PyChromecast（既定5秒更新）
 - 右上の機器名をタッチしてGoogle Homeを変更（選択値は再起動後も維持）
 
@@ -99,6 +100,25 @@ DPMS (Display Power Management Signaling):
   DPMS is Disabled
 ```
 
+### SSHから表示を再読み込み
+
+フロントエンドの変更を反映する場合など、SSHからChromiumキオスクを再起動できます。
+
+```bash
+cd ~/raspi-signage
+./reload-display.sh
+```
+
+このスクリプトはChromiumを終了し、サイネージ用プロファイルを使用してキオスクモードで再起動します。
+
+バックエンドのみを再起動する場合は次を使用します。
+
+```bash
+sudo systemctl restart raspi-signage
+```
+
+`systemctl restart` はFlaskバックエンドのみを再起動し、Chromiumは再起動しません。
+
 ## ローカル設定とGit
 
 以下はローカル環境固有のためGit管理対象外です。
@@ -109,6 +129,7 @@ DPMS (Display Power Management Signaling):
 - `__pycache__/`
 - `*.before-*`
 - `*.bak`
+- `dev-work/`
 
 初回セットアップでは `.env.example` を `.env` にコピーして使用してください。実際の緯度・経度、Google Home名、認証情報などの環境固有情報はコミットしないでください。
 
@@ -124,7 +145,7 @@ DPMS (Display Power Management Signaling):
 
 ## 動作確認環境
 
-v0.1 は以下の環境で動作確認しています。
+v0.2 は以下の環境で動作確認しています。
 
 - Raspberry Pi 4
 - Raspberry Pi OS 64-bit（Debian GNU/Linux 13 / trixie ベース）
@@ -141,8 +162,12 @@ v0.1 は以下の環境で動作確認しています。
 - 起動時のChromiumキオスク自動起動
 - 時計の表示・更新
 - Open-Meteoによる天気表示
+- SVG天気アイコンの表示
 - Google Castデバイスの検出
-- 再生中の曲名などの表示
+- 再生中の曲名、アーティスト、アルバム、ジャケットの表示
+- 再生画面のWaveビジュアライザー
+- 再生画面の時刻・天気表示
+- `reload-display.sh` によるChromiumキオスクの再起動
 - X11のスクリーンセーバー / DPMSを無効化した状態での連続表示
 
 他のRaspberry Piモデル、ディスプレイ、OSバージョンでの動作は未確認です。
