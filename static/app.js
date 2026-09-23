@@ -4,6 +4,8 @@ const STATUS_INTERVAL_MS = 5000;
 const CLOCK_INTERVAL_MS = 1000;
 const FETCH_TIMEOUT_MS = 10000;
 
+let wasPlaying = false;
+
 function weatherIcon(code) {
   if (code === 0) return 'clear.svg';
   if (code >= 1 && code <= 2) return 'partly-cloudy.svg';
@@ -79,9 +81,15 @@ async function update() {
     if (playing) {
       const newTitle = status.cast.title || 'タイトル不明';
       const title = $('title');
+      const titleChanged = title.textContent !== newTitle;
 
-      if (title.textContent !== newTitle) {
+      if (titleChanged) {
         title.textContent = newTitle;
+      }
+
+      // 曲が変わった場合、または停止状態から再生を開始した場合に
+      // タイトルスクロールを先頭から開始する。
+      if (titleChanged || !wasPlaying) {
         resetTitleScroll();
       }
 
@@ -91,7 +99,12 @@ async function update() {
       if (status.cast.image) {
         $('cover').src = status.cast.image;
       }
+    } else if (wasPlaying) {
+      // 再生から停止へ切り替わったときだけスクロールを停止する。
+      stopTitleScroll();
     }
+
+    wasPlaying = playing;
   } catch (error) {
     console.warn('Status update failed:', error);
   }
@@ -231,19 +244,27 @@ function startWaveVisualizer() {
 
 let titleScrollTimer = null;
 
+function stopTitleScroll() {
+  if (titleScrollTimer) {
+    clearTimeout(titleScrollTimer);
+    titleScrollTimer = null;
+  }
+
+  const title = $('title');
+
+  if (title) {
+    title.style.transition = 'none';
+    title.style.transform = 'translateX(0)';
+  }
+}
+
 function resetTitleScroll() {
   const title = $('title');
   const titleWindow = $('title-window');
 
   if (!title || !titleWindow) return;
 
-  if (titleScrollTimer) {
-    clearTimeout(titleScrollTimer);
-    titleScrollTimer = null;
-  }
-
-  title.style.transition = 'none';
-  title.style.transform = 'translateX(0)';
+  stopTitleScroll();
 
   // レイアウト確定後に、タイトルが表示幅を超えているか測定する
   requestAnimationFrame(() => {
