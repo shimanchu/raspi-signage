@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Home Signage</title>
-    <link rel="stylesheet" href="/static/style.css?v=40" />
+    <link rel="stylesheet" href="/static/style.css?v=41" />
   </head>
   <body>
     <button id="device-button" type="button">🔊 <span id="device-name">未選択</span></button>
@@ -20,11 +20,15 @@
     </main>
 
     <main id="music-screen" class="screen hidden">
+      <div class="music-header">
+        <div class="playing">▶ 再生中</div>
+      </div>
+
+      <div id="title">曲名を取得中</div>
+
       <div class="music-main">
         <img id="cover" alt="ジャケット" />
         <section class="track">
-          <div class="playing">▶ 再生中</div>
-          <div id="title">曲名を取得中</div>
           <div id="artist"></div>
           <div id="album"></div>
         </section>
