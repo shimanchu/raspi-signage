@@ -164,7 +164,7 @@ body {
   position: relative;
   width: 480px;
   height: 320px;
-  padding: 14px 18px 0;
+  padding: 10px 18px 0;
   overflow: hidden;
 }
 
@@ -172,21 +172,70 @@ body {
   display: none;
 }
 
+/*
+ * 1段目:
+ * 「再生中」とGoogle Homeデバイス選択ボタンの領域。
+ *
+ * device-button が42pxあるため、タイトルがボタンの下に
+ * 入り込まないよう、この行も42px確保する。
+ */
+.music-header {
+  display: flex;
+  align-items: center;
+  height: 42px;
+  padding-right: 190px;
+}
+
+.playing {
+  font-size: 16px;
+  font-weight: 700;
+  color: #69e0a5;
+  white-space: nowrap;
+}
+
+/*
+ * 2段目:
+ * 曲名を表示する固定ウィンドウ。
+ *
+ * 長い曲名では、この領域自体は動かさず、
+ * 内側の #title だけを横方向へスクロールさせる。
+ */
+#title-window {
+  width: 100%;
+  height: 34px;
+  margin-top: 0;
+  overflow: hidden;
+}
+
+#title {
+  display: inline-block;
+  min-width: 100%;
+  font-size: 27px;
+  line-height: 34px;
+  font-weight: 700;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+/*
+ * ジャケット＋アーティスト＋アルバム
+ */
 .music-main {
   display: grid;
-  grid-template-columns: 158px minmax(0, 1fr);
-  gap: 17px;
-  height: 196px;
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: 15px;
+  height: 116px;
+  margin-top: 5px;
   align-items: center;
 }
 
 #cover {
-  width: 158px;
-  height: 158px;
+  width: 112px;
+  height: 112px;
   object-fit: cover;
-  border-radius: 15px;
+  border-radius: 12px;
   background: #223247;
-  box-shadow: 0 8px 24px #0008;
+  box-shadow: 0 6px 18px #0008;
 }
 
 .track {
@@ -194,47 +243,32 @@ body {
   overflow: hidden;
 }
 
-.playing {
-  margin-bottom: 7px;
-  font-size: 16px;
-  font-weight: 700;
-  color: #69e0a5;
-}
-
-#title {
-  font-size: 27px;
-  line-height: 1.13;
-  font-weight: 700;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  overflow-wrap: anywhere;
-}
-
 #artist {
-  margin-top: 9px;
-  font-size: 19px;
-  line-height: 1.2;
-  color: #d2e1f3;
   overflow: hidden;
+  font-size: 22px;
+  line-height: 1.2;
+  font-weight: 700;
+  color: #d2e1f3;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 
 #album {
-  margin-top: 6px;
-  font-size: 13px;
-  color: #91a5bd;
+  margin-top: 8px;
   overflow: hidden;
+  font-size: 15px;
+  color: #91a5bd;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 
+/*
+ * 波形ビジュアライザ
+ */
 #wave {
   position: absolute;
   left: 18px;
-  top: 202px;
+  top: 200px;
   display: block;
   width: 444px;
   height: 82px;
@@ -242,6 +276,9 @@ body {
   pointer-events: none;
 }
 
+/*
+ * 画面下部の時刻・天気
+ */
 .mini-weather {
   position: absolute;
   left: 18px;
@@ -250,7 +287,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 13px;
+  font-size: 17px;
+  font-weight: 600;
   color: #cbdcf2;
   z-index: 2;
 }
@@ -258,10 +296,10 @@ body {
 .mini-weather-right {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
 }
 
 .mini-weather-icon {
-  width: 17px;
-  height: 17px;
+  width: 21px;
+  height: 21px;
 }

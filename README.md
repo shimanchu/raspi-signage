@@ -4,7 +4,7 @@ Raspberry Piと3.5インチLCDで、時計・天気とGoogle Homeの再生中楽
 
 - 通常時: 大きな時計、日付、現在気温、今日の最大降水確率
 - Google Homeの再生中: 曲名、アーティスト、アルバム、ジャケットへ自動切替
-- 再生画面: 480×320 LCD向けレイアウト、Waveビジュアライザー、時刻・天気を表示
+- 再生画面: 480×320 LCD向けレイアウト、長い曲名の自動横スクロール、Waveビジュアライザー、時刻・天気を表示
 - 天気: Open-Meteo（APIキー不要、15分更新）、天候に応じたSVGアイコン表示
 - 曲情報: PyChromecast（既定5秒更新）
 - 右上の機器名をタッチしてGoogle Homeを変更（選択値は再起動後も維持）
@@ -145,7 +145,7 @@ sudo systemctl restart raspi-signage
 
 ## 動作確認環境
 
-v0.2 は以下の環境で動作確認しています。
+v0.3 は以下の環境で動作確認しています。
 
 - Raspberry Pi 4
 - Raspberry Pi OS 64-bit（Debian GNU/Linux 13 / trixie ベース）
@@ -165,6 +165,7 @@ v0.2 は以下の環境で動作確認しています。
 - SVG天気アイコンの表示
 - Google Castデバイスの検出
 - 再生中の曲名、アーティスト、アルバム、ジャケットの表示
+- 長い曲名の自動横スクロール
 - 再生画面のWaveビジュアライザー
 - 再生画面の時刻・天気表示
 - `reload-display.sh` によるChromiumキオスクの再起動

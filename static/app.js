@@ -4,6 +4,8 @@ const STATUS_INTERVAL_MS = 5000;
 const CLOCK_INTERVAL_MS = 1000;
 const FETCH_TIMEOUT_MS = 10000;
 
+let wasPlaying = false;
+
 function weatherIcon(code) {
   if (code === 0) return 'clear.svg';
   if (code >= 1 && code <= 2) return 'partly-cloudy.svg';
@@ -77,14 +79,32 @@ async function update() {
     $('music-screen').classList.toggle('hidden', !playing);
 
     if (playing) {
-      $('title').textContent = status.cast.title || 'タイトル不明';
+      const newTitle = status.cast.title || 'タイトル不明';
+      const title = $('title');
+      const titleChanged = title.textContent !== newTitle;
+
+      if (titleChanged) {
+        title.textContent = newTitle;
+      }
+
+      // 曲が変わった場合、または停止状態から再生を開始した場合に
+      // タイトルスクロールを先頭から開始する。
+      if (titleChanged || !wasPlaying) {
+        resetTitleScroll();
+      }
+
       $('artist').textContent = status.cast.artist || 'アーティスト不明';
       $('album').textContent = status.cast.album || '';
 
       if (status.cast.image) {
         $('cover').src = status.cast.image;
       }
+    } else if (wasPlaying) {
+      // 再生から停止へ切り替わったときだけスクロールを停止する。
+      stopTitleScroll();
     }
+
+    wasPlaying = playing;
   } catch (error) {
     console.warn('Status update failed:', error);
   }
@@ -220,6 +240,62 @@ function startWaveVisualizer() {
   }
 
   requestAnimationFrame(frame);
+}
+
+let titleScrollTimer = null;
+
+function stopTitleScroll() {
+  if (titleScrollTimer) {
+    clearTimeout(titleScrollTimer);
+    titleScrollTimer = null;
+  }
+
+  const title = $('title');
+
+  if (title) {
+    title.style.transition = 'none';
+    title.style.transform = 'translateX(0)';
+  }
+}
+
+function resetTitleScroll() {
+  const title = $('title');
+  const titleWindow = $('title-window');
+
+  if (!title || !titleWindow) return;
+
+  stopTitleScroll();
+
+  // レイアウト確定後に、タイトルが表示幅を超えているか測定する
+  requestAnimationFrame(() => {
+    const overflow = title.scrollWidth - titleWindow.clientWidth;
+
+    // 1行に収まっている場合は何もしない
+    if (overflow <= 1) return;
+
+    const pixelsPerSecond = 60;
+    const duration = overflow / pixelsPerSecond;
+
+    function scrollToEnd() {
+      title.style.transition = `transform ${duration}s linear`;
+      title.style.transform = `translateX(-${overflow}px)`;
+
+      // スクロール終了後、末尾を3秒表示
+      titleScrollTimer = setTimeout(
+        () => {
+          title.style.transition = 'none';
+          title.style.transform = 'translateX(0)';
+
+          // 先頭を3秒表示してから再スタート
+          titleScrollTimer = setTimeout(scrollToEnd, 3000);
+        },
+        duration * 1000 + 3000,
+      );
+    }
+
+    // 最初は先頭を3秒表示
+    titleScrollTimer = setTimeout(scrollToEnd, 3000);
+  });
 }
 
 document.addEventListener('visibilitychange', () => {
