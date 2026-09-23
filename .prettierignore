@@ -1,0 +1,11 @@
+node_modules/
+.venv/
+dev-work/
+.git/
+
+app.py
+requirements.txt
+*.service
+*.desktop
+*.sh
+*.json

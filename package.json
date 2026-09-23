@@ -1,0 +1,28 @@
+{
+  "name": "raspi-signage",
+  "version": "1.0.0",
+  "description": "Raspberry Piと3.5インチLCDで、時計・天気とGoogle Homeの再生中楽曲を表示するホームサイネージです。",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --write \"static/**/*.{js,css}\" \"templates/**/*.html\" \"README.md\"",
+    "format:check": "prettier --check \"static/**/*.{js,css}\" \"templates/**/*.html\" \"README.md\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shimanchu/raspi-signage.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shimanchu/raspi-signage/issues"
+  },
+  "homepage": "https://github.com/shimanchu/raspi-signage#readme",
+  "devDependencies": {
+    "prettier": "^3.9.8"
+  }
+}

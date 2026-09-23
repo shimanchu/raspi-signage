@@ -1,61 +1,64 @@
 <!doctype html>
 <html lang="ja">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Home Signage</title>
-  <link rel="stylesheet" href="/static/style.css?v=40">
-</head>
-<body>
-  <button id="device-button" type="button">
-    🔊 <span id="device-name">未選択</span>
-  </button>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Home Signage</title>
+    <link rel="stylesheet" href="/static/style.css?v=40" />
+  </head>
+  <body>
+    <button id="device-button" type="button">🔊 <span id="device-name">未選択</span></button>
 
-  <main id="clock-screen" class="screen">
-    <div id="clock">--:--</div>
-    <div id="date">----</div>
-    <div class="weather">
-      <img id="weather-icon" class="weather-icon" src="/static/weather/clear.svg" alt="">
-      <span id="temperature">--℃</span>
-      <span id="rain">降水 --%</span>
-    </div>
-  </main>
+    <main id="clock-screen" class="screen">
+      <div id="clock">--:--</div>
+      <div id="date">----</div>
+      <div class="weather">
+        <img id="weather-icon" class="weather-icon" src="/static/weather/clear.svg" alt="" />
+        <span id="temperature">--℃</span>
+        <span id="rain">降水 --%</span>
+      </div>
+    </main>
 
-  <main id="music-screen" class="screen hidden">
-    <div class="music-main">
-      <img id="cover" alt="ジャケット">
-      <section class="track">
-        <div class="playing">▶ 再生中</div>
-        <div id="title">曲名を取得中</div>
-        <div id="artist"></div>
-        <div id="album"></div>
+    <main id="music-screen" class="screen hidden">
+      <div class="music-main">
+        <img id="cover" alt="ジャケット" />
+        <section class="track">
+          <div class="playing">▶ 再生中</div>
+          <div id="title">曲名を取得中</div>
+          <div id="artist"></div>
+          <div id="album"></div>
+        </section>
+      </div>
+
+      <canvas id="wave" aria-hidden="true"></canvas>
+
+      <div class="mini-weather">
+        <span id="mini-time"></span>
+        <span class="mini-weather-right">
+          <img
+            id="mini-weather-icon"
+            class="mini-weather-icon"
+            src="/static/weather/clear.svg"
+            alt=""
+          />
+          <span id="mini-weather-text">--℃ 降水 --%</span>
+        </span>
+      </div>
+    </main>
+
+    <div id="device-dialog" class="dialog hidden">
+      <section class="dialog-card">
+        <header>
+          <strong>Google Homeを選択</strong>
+          <button id="close-dialog" type="button">×</button>
+        </header>
+        <div id="device-list">
+          <div class="searching">検索中…</div>
+        </div>
+        <button id="rescan" type="button">再検索</button>
       </section>
     </div>
 
-    <canvas id="wave" aria-hidden="true"></canvas>
-
-    <div class="mini-weather">
-      <span id="mini-time"></span>
-      <span class="mini-weather-right">
-        <img id="mini-weather-icon" class="mini-weather-icon" src="/static/weather/clear.svg" alt="">
-        <span id="mini-weather-text">--℃ 降水 --%</span>
-      </span>
-    </div>
-  </main>
-
-  <div id="device-dialog" class="dialog hidden">
-    <section class="dialog-card">
-      <header>
-        <strong>Google Homeを選択</strong>
-        <button id="close-dialog" type="button">×</button>
-      </header>
-      <div id="device-list">
-        <div class="searching">検索中…</div>
-      </div>
-      <button id="rescan" type="button">再検索</button>
-    </section>
-  </div>
-
-  <script src="/static/app.js?v=40"></script>
-</body>
+    <script src="/static/app.js?v=40"></script>
+  </body>
 </html>
