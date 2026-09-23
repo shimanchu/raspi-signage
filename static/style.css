@@ -268,7 +268,7 @@ body {
 #wave {
   position: absolute;
   left: 18px;
-  top: 190px;
+  top: 200px;
   display: block;
   width: 444px;
   height: 82px;
@@ -287,7 +287,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 13px;
+  font-size: 17px;
+  font-weight: 600;
   color: #cbdcf2;
   z-index: 2;
 }
@@ -295,10 +296,10 @@ body {
 .mini-weather-right {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
 }
 
 .mini-weather-icon {
-  width: 17px;
-  height: 17px;
+  width: 21px;
+  height: 21px;
 }
